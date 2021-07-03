@@ -1,0 +1,16 @@
+###################
+## Apache Solr
+###################
+spring:
+  data:
+    solr:
+      host: http://localhost:8984/solr
+
+
+###################
+## Web Container
+###################
+
+server:
+  port: 9988
+  address: 0.0.0.0
