@@ -49,12 +49,16 @@ public class SorlController {
     }
     @GetMapping("/search/product")
     public ResponseEntity findProduct(@RequestParam  String searchStr) {
+        //http://localhost:9988/service/solr/search/product?searchStr=The
         log.info("{}", String.format("Product을 '%s'로 검색합니다.", searchStr));
         long startMillis = System.currentTimeMillis();
         HttpSolrClient httpSolrClient = new HttpSolrClient.Builder("http://localhost:8983/solr/techproducts").build();
         SolrQuery solrQuery = new SolrQuery();
         String query=String.format("name:'%s'", searchStr);
         solrQuery.setQuery(query);
+        solrQuery.setHighlight(true);
+        solrQuery.set("hl.fl","name");
+
         solrQuery.set("fl","*");
         solrQuery.setRows(10);
         QueryResponse solrResponse=null;
