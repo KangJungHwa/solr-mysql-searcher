@@ -3,6 +3,8 @@ package com.datadynamics.io.solr.controller;
 import com.datadynamics.io.solr.model.Job;
 import com.datadynamics.io.solr.service.SolrService;
 import com.datadynamics.io.solr.util.MapUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -23,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+@Api("이미지 검색 서비스")
 @RestController
 @RequestMapping("/service/solr")
 @Slf4j
@@ -37,6 +40,7 @@ public class SorlController {
         return ResponseEntity.ok(solrService.findAll());
     }
 
+
     @GetMapping("/search/jobname")
     public ResponseEntity findByJobName(@RequestParam  String jobName) {
         log.info("{}", String.format("jobName을 '%s'로 검색합니다.", jobName));
@@ -50,6 +54,7 @@ public class SorlController {
 
         return ResponseEntity.ok(MapUtils.map("elapsed (ms)", endMillis, "name", optionalJob.get().getJobName()));
     }
+    @ApiOperation(value = "exam", notes = "예제입니다.")
     @GetMapping("/search/cat_std_word")
     public ResponseEntity findProduct(@RequestParam  String searchStr) {
         //http://localhost:9988/service/solr/search/product?searchStr=The
