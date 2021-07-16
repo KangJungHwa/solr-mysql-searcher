@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-@Api("이미지 검색 서비스")
+@Api("추출대상 테이블 메타검색 서비스")
 @RestController
 @RequestMapping("/service/solr")
 @Slf4j
